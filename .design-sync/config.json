@@ -1,0 +1,15 @@
+{
+  "projectId": "6f9c677b-3fea-4568-967e-ce3367875e23",
+  "shape": "package",
+  "pkg": "motioncraft",
+  "globalName": "Motioncraft",
+  "srcDir": ".design-sync/srcroot",
+  "cssEntry": ".design-sync/compiled.css",
+  "extraEntries": [
+    "./.design-sync/ds-wrapper.tsx"
+  ],
+  "provider": {
+    "component": "DirectionWrapper"
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
