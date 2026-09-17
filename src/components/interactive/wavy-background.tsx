@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { type ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -100,8 +100,15 @@ function generateWavePath(offset: number, totalWaves: number): string {
   return `M0,${yBase + Math.sin(offset) * amplitude} C25,${yBase - amplitude} 50,${yBase + amplitude} 75,${yBase} C87.5,${yBase - amplitude / 2} 100,${yBase + amplitude / 2} 100,${yBase} L100,100 L0,100 Z`;
 }
 
+// Deterministic pseudo-random so the server and client render the same grid.
+// Math.random() here caused a hydration mismatch.
+function seeded(i: number, salt: number) {
+  const x = Math.sin(i * 12.9898 + salt * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
+
 // ─── AnimatedGridPattern ────────────────────────────────────────────────────
-// Grid pattern with cells that randomly light up
+// Grid pattern with cells that light up in a fixed scatter
 
 export function AnimatedGridPattern({
   className,
@@ -112,14 +119,14 @@ export function AnimatedGridPattern({
   maxOpacity = 0.5,
   duration = 4,
 }: AnimatedGridPatternProps) {
-  const id = `grid-${Math.random().toString(36).slice(2, 9)}`;
+  const id = `grid-${useId().replace(/:/g, "")}`;
 
-  // Generate random positions for animated squares
   const squares = Array.from({ length: numSquares }, (_, i) => ({
     id: i,
-    x: Math.floor(Math.random() * 40) * width,
-    y: Math.floor(Math.random() * 20) * height,
-    delay: Math.random() * duration,
+    x: Math.floor(seeded(i, 1) * 40) * width,
+    y: Math.floor(seeded(i, 2) * 20) * height,
+    delay: seeded(i, 3) * duration,
+    repeatDelay: seeded(i, 4) * 2,
   }));
 
   return (
@@ -154,7 +161,7 @@ export function AnimatedGridPattern({
             duration,
             delay: square.delay,
             repeat: Infinity,
-            repeatDelay: Math.random() * 2,
+            repeatDelay: square.repeatDelay,
           }}
         />
       ))}
@@ -173,7 +180,7 @@ export function DotPattern({
   cy = 1,
   cr = 1,
 }: DotPatternProps) {
-  const id = `dot-${Math.random().toString(36).slice(2, 9)}`;
+  const id = `dot-${useId().replace(/:/g, "")}`;
 
   return (
     <svg className={cn("absolute inset-0 h-full w-full", className)}>

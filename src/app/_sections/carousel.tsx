@@ -50,10 +50,10 @@ export function CarouselSection() {
   const variants = getMotionVariants(direction);
   const meta = DIRECTION_META[direction];
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section ref={ref} id="components" className="py-32 lg:py-40 overflow-hidden">
+    <section ref={ref} id="components" className="py-20 md:py-28 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

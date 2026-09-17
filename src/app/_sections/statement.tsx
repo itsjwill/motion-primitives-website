@@ -9,7 +9,7 @@ import { SectionReveal } from "@/components/scroll/section-reveal";
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   useEffect(() => {
     if (!isInView) return;
@@ -36,7 +36,7 @@ export function StatementSection() {
   const { direction } = useTheme();
   const variants = getMotionVariants(direction);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   const stats = [
     { value: 80, suffix: "+", label: "Components" },
@@ -46,7 +46,7 @@ export function StatementSection() {
   ];
 
   return (
-    <section ref={ref} className="py-32 lg:py-40 px-6">
+    <section ref={ref} className="py-20 md:py-28 px-6">
       <SectionReveal type="clip">
       <div className="max-w-5xl mx-auto">
         {/* Statement */}

@@ -1,0 +1,13 @@
+{
+  "name": "Motion Primitives",
+  "short_name": "Motion",
+  "description": "Premium animation components for React. 95+ components across 4 design directions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#FF6B35",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

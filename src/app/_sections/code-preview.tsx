@@ -21,7 +21,7 @@ export function CodePreviewSection() {
   const { direction } = useTheme();
   const meta = DIRECTION_META[direction];
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const [displayedCode, setDisplayedCode] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -46,7 +46,7 @@ export function CodePreviewSection() {
   };
 
   return (
-    <section ref={ref} className="py-32 lg:py-40 px-6">
+    <section ref={ref} className="py-20 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

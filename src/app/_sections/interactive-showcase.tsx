@@ -18,7 +18,7 @@ import { AnimatedTabs } from "@/components/interactive/animated-tabs";
 
 export function InteractiveShowcase() {
   return (
-    <section className="relative py-32 px-6 overflow-hidden">
+    <section className="relative py-20 md:py-28 px-6 overflow-hidden">
       {/* Background pattern */}
       <AnimatedGridPattern
         className="text-primary/5 [mask-image:radial-gradient(500px_circle_at_center,white,transparent)]"

@@ -8,10 +8,10 @@ export function CTASection() {
   const { direction } = useTheme();
   const meta = DIRECTION_META[direction];
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section ref={ref} className="py-32 lg:py-40 px-6 relative overflow-hidden">
+    <section ref={ref} className="py-20 md:py-28 px-6 relative overflow-hidden">
       {/* Background glow - direction-aware */}
       <div className="absolute inset-0 pointer-events-none">
         {direction !== "luxury" && (
