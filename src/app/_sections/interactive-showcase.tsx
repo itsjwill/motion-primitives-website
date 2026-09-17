@@ -18,7 +18,7 @@ import { AnimatedTabs } from "@/components/interactive/animated-tabs";
 
 export function InteractiveShowcase() {
   return (
-    <section className="relative py-32 px-6 overflow-hidden">
+    <section className="relative py-20 md:py-28 px-6 overflow-hidden">
       {/* Background pattern */}
       <AnimatedGridPattern
         className="text-primary/5 [mask-image:radial-gradient(500px_circle_at_center,white,transparent)]"
@@ -82,7 +82,7 @@ export function InteractiveShowcase() {
         {/* ─── macOS Dock ─────────────────────────────────────────── */}
         <ScrollReveal variant="fade-up" delay={0.15}>
           <div className="mb-24">
-            <h3 className="text-heading-3 font-heading mb-2">Dock</h3>
+            <h3 className="mp-h3 text-heading-3 font-heading mb-2">Dock</h3>
             <p className="text-body-sm text-muted-foreground mb-6">
               macOS-style magnification dock. Hover to see the magic.
             </p>
@@ -118,7 +118,7 @@ export function InteractiveShowcase() {
         {/* ─── Spotlight Cards ────────────────────────────────────── */}
         <ScrollReveal variant="fade-up" delay={0.1}>
           <div className="mb-24">
-            <h3 className="text-heading-3 font-heading mb-2">Spotlight Cards</h3>
+            <h3 className="mp-h3 text-heading-3 font-heading mb-2">Spotlight Cards</h3>
             <p className="text-body-sm text-muted-foreground mb-6">
               Cursor-tracking radial spotlight. Move your mouse around.
             </p>
@@ -130,7 +130,7 @@ export function InteractiveShowcase() {
               ].map((item, i) => (
                 <SpotlightCard key={i}>
                   <p className="text-display-sm font-heading text-primary mb-2">{item.count}</p>
-                  <h4 className="text-heading-3 font-heading mb-2">{item.title}</h4>
+                  <h4 className="mp-h3 text-heading-3 font-heading mb-2">{item.title}</h4>
                   <p className="text-body-sm text-muted-foreground">{item.desc}</p>
                 </SpotlightCard>
               ))}
@@ -141,7 +141,7 @@ export function InteractiveShowcase() {
         {/* ─── Buttons Row ────────────────────────────────────────── */}
         <ScrollReveal variant="fade-up" delay={0.1}>
           <div className="mb-24">
-            <h3 className="text-heading-3 font-heading mb-2">Interactive Buttons</h3>
+            <h3 className="mp-h3 text-heading-3 font-heading mb-2">Interactive Buttons</h3>
             <p className="text-body-sm text-muted-foreground mb-6">
               Magnetic, ripple, and confetti effects. Click them.
             </p>
@@ -162,14 +162,14 @@ export function InteractiveShowcase() {
         >
           {[
             <LiquidGlass key="lg" className="p-8">
-              <h4 className="text-heading-3 font-heading mb-2">Liquid Glass</h4>
+              <h4 className="mp-h3 text-heading-3 font-heading mb-2">Liquid Glass</h4>
               <p className="text-body-sm text-muted-foreground">
                 iOS 26-style liquid glass with 3D tilt refraction. Hover to see the depth.
               </p>
             </LiquidGlass>,
             <GlowingBorder key="gb">
               <div className="p-8">
-                <h4 className="text-heading-3 font-heading mb-2">Glowing Border</h4>
+                <h4 className="mp-h3 text-heading-3 font-heading mb-2">Glowing Border</h4>
                 <p className="text-body-sm text-muted-foreground">
                   Animated pulsing glow border. Uses the direction accent color.
                 </p>
@@ -177,14 +177,14 @@ export function InteractiveShowcase() {
             </GlowingBorder>,
             <ShimmerBorder key="sb">
               <div className="p-8">
-                <h4 className="text-heading-3 font-heading mb-2">Shimmer Border</h4>
+                <h4 className="mp-h3 text-heading-3 font-heading mb-2">Shimmer Border</h4>
                 <p className="text-body-sm text-muted-foreground">
                   Rotating gradient shimmer around the border. Pure CSS magic.
                 </p>
               </div>
             </ShimmerBorder>,
             <FrostedPanel key="fp" className="p-8">
-              <h4 className="text-heading-3 font-heading mb-2">Frosted Panel</h4>
+              <h4 className="mp-h3 text-heading-3 font-heading mb-2">Frosted Panel</h4>
               <p className="text-body-sm text-muted-foreground">
                 Heavy frosted glass with noise texture overlay. Premium feel.
               </p>
@@ -195,7 +195,7 @@ export function InteractiveShowcase() {
         {/* ─── Animated Tabs ──────────────────────────────────────── */}
         <ScrollReveal variant="fade-up" delay={0.1}>
           <div className="mb-24">
-            <h3 className="text-heading-3 font-heading mb-2">Animated Tabs</h3>
+            <h3 className="mp-h3 text-heading-3 font-heading mb-2">Animated Tabs</h3>
             <p className="text-body-sm text-muted-foreground mb-6">
               Smooth layout animations with spring physics.
             </p>
@@ -205,7 +205,7 @@ export function InteractiveShowcase() {
                   id: "components",
                   label: "Components",
                   content: (
-                    <div className="rounded-xl border border-border bg-surface/50 p-6">
+                    <div className="mp-card rounded-xl mp-card border border-border p-6">
                       <p className="text-body-sm text-muted-foreground">
                         110+ components across backgrounds, cards, scroll animations, text effects, 3D, buttons, layout, navigation, transitions, and interactive elements.
                       </p>
@@ -216,7 +216,7 @@ export function InteractiveShowcase() {
                   id: "directions",
                   label: "Directions",
                   content: (
-                    <div className="rounded-xl border border-border bg-surface/50 p-6">
+                    <div className="mp-card rounded-xl mp-card border border-border p-6">
                       <p className="text-body-sm text-muted-foreground">
                         4 complete design systems: Luxury (Rolex/Apple), Cyberpunk (Blade Runner), Kinetic (Stripe/Linear), Freestyle (Brutalist). All runtime-switchable.
                       </p>
@@ -227,7 +227,7 @@ export function InteractiveShowcase() {
                   id: "performance",
                   label: "Performance",
                   content: (
-                    <div className="rounded-xl border border-border bg-surface/50 p-6">
+                    <div className="mp-card rounded-xl mp-card border border-border p-6">
                       <p className="text-body-sm text-muted-foreground">
                         Lighthouse 90+. Dynamic imports for Three.js. Font swap for web fonts. prefers-reduced-motion support. Code-split animations.
                       </p>
@@ -242,7 +242,7 @@ export function InteractiveShowcase() {
         {/* ─── Marquee ────────────────────────────────────────────── */}
         <ScrollReveal variant="fade-up" delay={0.1}>
           <div className="mb-24">
-            <h3 className="text-heading-3 font-heading mb-2">Marquee</h3>
+            <h3 className="mp-h3 text-heading-3 font-heading mb-2">Marquee</h3>
             <p className="text-body-sm text-muted-foreground mb-6">
               Infinite scroll marquee. Pauses on hover.
             </p>

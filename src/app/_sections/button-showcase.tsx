@@ -9,10 +9,10 @@ export function ButtonShowcase() {
   const { direction } = useTheme();
   const meta = DIRECTION_META[direction];
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section ref={ref} className="py-32 lg:py-40 px-6 relative overflow-hidden">
+    <section ref={ref} className="py-20 md:py-28 px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Section header - direction aware */}
         {direction === "luxury" && <LuxuryHeader isInView={isInView} />}

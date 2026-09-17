@@ -122,13 +122,13 @@ export default function RootLayout({
     >
       <head>
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="bg-background text-foreground antialiased min-h-screen">
         <ThemeProvider defaultDirection="freestyle" defaultMode="dark">
+          <div className="mp-aurora" aria-hidden />
           <DirectionPreloader>
             {children}
           </DirectionPreloader>

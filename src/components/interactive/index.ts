@@ -48,3 +48,51 @@ export { ScrollReveal, StaggerReveal, TextReveal } from "./scroll-reveal";
 
 // Orbiting elements
 export { OrbitingCircles, OrbitSystem } from "./orbit";
+
+// Spring-animated modal/dialog
+export { Modal, ModalHeader, ModalFooter, ModalClose } from "./modal";
+
+// Animated toast notifications
+export { ToastProvider, useToast } from "./toast";
+
+// Slide-out drawer/sheet
+export { Drawer, DrawerHeader, DrawerBody, DrawerFooter } from "./drawer";
+
+// Smooth animated accordion/collapse
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./accordion";
+
+// Spring-animated tooltip
+export { Tooltip, TooltipGroup } from "./tooltip";
+
+// Loading skeleton placeholders
+export {
+  Skeleton,
+  SkeletonGroup,
+  SkeletonCard,
+  SkeletonAvatar,
+} from "./skeleton";
+
+// Cmd+K command palette
+export { CommandPalette, useCommandPalette } from "./command-palette";
+
+// Progress bars, steps, and circular progress
+export { ProgressBar, StepIndicator, CircularProgress } from "./progress";
+
+// Animated toggle switch and toggle group
+export { Switch, ToggleGroup } from "./switch";
+
+// Tinder-style swipe cards
+export { SwipeCards } from "./swipe-cards";
+export type { SwipeCard } from "./swipe-cards";
+
+// Drag-and-drop sortable list
+export { SortableList } from "./sortable-list";
+export type { SortableItem } from "./sortable-list";
+
+// Spring-animated number counter and stat card
+export { AnimatedCounter as SpringCounter, StatCard } from "./animated-counter";

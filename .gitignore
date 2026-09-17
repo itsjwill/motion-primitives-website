@@ -40,3 +40,6 @@ next-env.d.ts
 .vscode
 *.swp
 *.swo
+
+# Bun lockfile (project uses package-lock.json)
+bun.lock

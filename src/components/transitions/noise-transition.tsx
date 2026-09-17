@@ -20,7 +20,7 @@ export function NoiseTransition({
 }: NoiseTransitionProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [phase, setPhase] = useState<"idle" | "covering" | "revealing">("idle");
-  const animRef = useRef<number>();
+  const animRef = useRef<number>(undefined);
 
   useEffect(() => {
     if (isActive && phase === "idle") {

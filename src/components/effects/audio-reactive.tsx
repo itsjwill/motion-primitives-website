@@ -21,7 +21,7 @@ export function AudioReactive({
   const [levels, setLevels] = useState<number[]>(Array(barCount).fill(0));
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const animRef = useRef<number>();
+  const animRef = useRef<number>(undefined);
 
   const startListening = async () => {
     try {

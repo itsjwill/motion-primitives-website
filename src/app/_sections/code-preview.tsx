@@ -21,7 +21,7 @@ export function CodePreviewSection() {
   const { direction } = useTheme();
   const meta = DIRECTION_META[direction];
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const [displayedCode, setDisplayedCode] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -46,7 +46,7 @@ export function CodePreviewSection() {
   };
 
   return (
-    <section ref={ref} className="py-32 lg:py-40 px-6">
+    <section ref={ref} className="py-20 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export function CodePreviewSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium border border-border bg-surface/50 mb-6">
+          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium mp-card border border-border bg-surface/50 mb-6">
             Developer Experience
           </span>
           <h2 className="text-heading-1 font-heading mb-4">
@@ -71,7 +71,7 @@ export function CodePreviewSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="relative rounded-2xl border border-border bg-surface overflow-hidden"
+          className="relative rounded-2xl mp-card border border-border bg-surface overflow-hidden"
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-3 border-b border-border">
@@ -119,7 +119,7 @@ export function CodePreviewSection() {
 
 function highlightSyntax(line: string, accent: string) {
   // Simple syntax highlighting
-  const parts: JSX.Element[] = [];
+  const parts: React.ReactElement[] = [];
   let remaining = line;
   let key = 0;
 

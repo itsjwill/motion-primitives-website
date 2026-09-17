@@ -140,6 +140,72 @@ const scenes = [
     spotlightColor: "#14b8a6",
     tech: "Geometric Design • Idle Animation • Companion Bot",
   },
+  {
+    id: "liquid-orb",
+    title: "Liquid Orb",
+    subtitle: "Fluid Dynamics Sphere",
+    description:
+      "A mesmerizing sphere of liquid that reacts to your cursor in real-time. Watch as the fluid surface deforms, ripples, and flows — like holding a droplet of mercury that's alive. The lighting shifts with every interaction, creating prismatic reflections across the surface.",
+    splineUrl: "https://prod.spline.design/2wmlDWtyKYMKf1dT/scene.splinecode",
+    gradient: "from-indigo-500 to-blue-600",
+    spotlightColor: "#6366f1",
+    tech: "Fluid Simulation • Cursor Reaction • Dynamic Lighting",
+  },
+  {
+    id: "floating-laptop",
+    title: "Floating Laptop",
+    subtitle: "Product Showcase Hero",
+    description:
+      "A sleek laptop floating in space with ambient rotation and glow effects. Perfect for SaaS hero sections, product launches, and tech showcases. The scene includes subtle particle effects and depth-of-field blur that make the product feel premium.",
+    splineUrl: "https://prod.spline.design/NoN4GBFjMIH2LsdY/scene.splinecode",
+    gradient: "from-slate-500 to-zinc-600",
+    spotlightColor: "#94a3b8",
+    tech: "Product Hero • Ambient Rotation • Particle Effects",
+  },
+  {
+    id: "planet",
+    title: "Living Planet",
+    subtitle: "Orbiting Ecosystem",
+    description:
+      "A stylized planet with orbiting moons, atmospheric glow, and interactive rotation. Drag to orbit around it. The scene features volumetric clouds, ocean reflections, and a dynamic ring system that responds to mouse proximity.",
+    splineUrl: "https://prod.spline.design/pvM-MKNInROhgjkR/scene.splinecode",
+    gradient: "from-blue-500 to-violet-600",
+    spotlightColor: "#3b82f6",
+    tech: "Orbit Controls • Atmospheric Effects • Ring System",
+  },
+  {
+    id: "crystal",
+    title: "Crystal Formation",
+    subtitle: "Generative Geometry",
+    description:
+      "A procedurally-inspired crystal cluster that catches and refracts light. Each facet reflects a different color spectrum. Hover over individual crystals to trigger growth animations — they emerge, rotate, and lock into formation like a geological time-lapse.",
+    splineUrl: "https://prod.spline.design/joLpOAtSrIMrhl3F/scene.splinecode",
+    gradient: "from-purple-500 to-pink-600",
+    spotlightColor: "#a855f7",
+    tech: "Refraction • Growth Animation • Generative Forms",
+  },
+  {
+    id: "neon-room",
+    title: "Neon Room",
+    subtitle: "Cyberpunk Interior",
+    description:
+      "Step into a neon-drenched cyberpunk room. Volumetric light rays cut through the haze, holographic displays flicker on the walls, and every surface pulses with electric energy. Move your cursor to sweep a flashlight beam across the scene.",
+    splineUrl: "https://prod.spline.design/OlKj0L2ByWGBsENk/scene.splinecode",
+    gradient: "from-pink-500 to-violet-600",
+    spotlightColor: "#ec4899",
+    tech: "Volumetric Lighting • Holographic UI • Cursor Flashlight",
+  },
+  {
+    id: "dna-helix",
+    title: "DNA Helix",
+    subtitle: "Bio-Digital Interface",
+    description:
+      "A rotating double helix structure rendered with bioluminescent materials. Each nucleotide pair glows independently, creating a mesmerizing pattern of light. Scroll to zoom in on individual base pairs. The perfect centerpiece for biotech, healthcare, or scientific landing pages.",
+    splineUrl: "https://prod.spline.design/DJSJcECqDlCav3qD/scene.splinecode",
+    gradient: "from-emerald-500 to-teal-600",
+    spotlightColor: "#10b981",
+    tech: "Bioluminescence • Scroll Zoom • Scientific Visualization",
+  },
 ];
 
 const robotVariants: {
@@ -218,6 +284,71 @@ const robotVariants: {
       { match: "hand", scale: { x: 0.8, y: 1.1, z: 0.8 } },
       { match: "leg", scale: { x: 0.75, y: 1.2, z: 0.75 } },
       { match: "foot", scale: { x: 0.85, y: 1.0, z: 1.1 } },
+    ],
+  },
+  {
+    id: "inferno",
+    title: "Inferno Core",
+    subtitle: "Volcanic Berserker",
+    description:
+      "Forged in fire. Deep obsidian body with molten orange veins running through every joint and seam. The eyes burn like twin furnaces — pure, searing white-hot light. Slightly widened stance with reinforced legs, like it's built to anchor itself and take punishment. This variant radiates raw thermal energy.",
+    gradient: "from-orange-500 to-red-600",
+    spotlightColor: "#ea580c",
+    tech: "Runtime Recolor • Molten Aesthetic • Spline API • Heat Signature",
+    theme: {
+      body: "#1a0a00",
+      accent: "#ea580c",
+      glow: "#fff7ed",
+    },
+    transforms: [
+      { match: "leg", scale: { x: 1.15, y: 1.0, z: 1.15 } },
+      { match: "foot", scale: { x: 1.2, y: 1.1, z: 1.2 } },
+      { match: "torso", scale: { x: 1.1, y: 1.0, z: 1.05 } },
+      { match: "shoulder", scale: { x: 1.2, y: 1.05, z: 1.2 } },
+    ],
+  },
+  {
+    id: "medic",
+    title: "MedUnit-7",
+    subtitle: "Field Medical Drone",
+    description:
+      "Pristine white chassis with soft mint-green highlights and a calming teal pulse in the visor. The proportions are compact — shorter limbs, oversized head for sensor arrays, gentle rounded edges. This bot was built to heal, not harm. Delicate, precise, and radiating trust. The first robot you'd want to see in an emergency.",
+    gradient: "from-teal-400 to-emerald-500",
+    spotlightColor: "#2dd4bf",
+    tech: "Runtime Transform • Compact Proportions • Spline API • Medical Design",
+    theme: {
+      body: "#f0fdf4",
+      accent: "#2dd4bf",
+      glow: "#5eead4",
+    },
+    transforms: [
+      { match: "head", scale: { x: 1.2, y: 1.15, z: 1.2 } },
+      { match: "torso", scale: { x: 0.9, y: 0.85, z: 0.9 } },
+      { match: "arm", scale: { x: 0.85, y: 0.9, z: 0.85 } },
+      { match: "leg", scale: { x: 0.9, y: 0.85, z: 0.9 } },
+      { match: "hand", scale: { x: 1.1, y: 1.1, z: 1.1 } },
+    ],
+  },
+  {
+    id: "void",
+    title: "Void Walker",
+    subtitle: "Interdimensional Scout",
+    description:
+      "Pure absence given form. The body is so dark it absorbs light — a matte vantablack shell that makes the robot look like a silhouette cut from reality itself. The only color comes from the electric blue eyes and faint cyan edges that trace the geometry. It doesn't look like it belongs in this dimension. Slightly smaller than standard, as if compressed by whatever force brought it here.",
+    gradient: "from-cyan-400 to-blue-600",
+    spotlightColor: "#22d3ee",
+    tech: "Runtime Recolor • Vantablack • Spline API • Dimensional Aesthetic",
+    theme: {
+      body: "#050508",
+      accent: "#0e7490",
+      glow: "#22d3ee",
+    },
+    transforms: [
+      { match: "body", scale: { x: 0.92, y: 0.92, z: 0.92 } },
+      { match: "torso", scale: { x: 0.92, y: 0.92, z: 0.92 } },
+      { match: "head", scale: { x: 0.95, y: 0.95, z: 0.95 } },
+      { match: "arm", scale: { x: 0.9, y: 0.95, z: 0.9 } },
+      { match: "leg", scale: { x: 0.9, y: 0.95, z: 0.9 } },
     ],
   },
 ];
@@ -393,9 +524,9 @@ export default function SplineWorldsPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            Twelve interactive 3D scenes powered by Spline — including three
-            custom colorway editions of the interactive robot, recolored at
-            runtime via the Spline API.
+            Twenty-one interactive 3D scenes powered by Spline — including six
+            custom colorway editions of the interactive robot, recolored and
+            body-morphed at runtime via the Spline API.
           </motion.p>
         </div>
       </section>

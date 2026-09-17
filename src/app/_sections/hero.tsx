@@ -16,7 +16,7 @@ export function HeroSection() {
   const prefersReduced = usePrefersReducedMotion();
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-[88svh] overflow-hidden">
       {/* Direction-specific animated background */}
       {mounted && !prefersReduced && (
         <MouseParallax strength={0.015} inverted className="absolute inset-0 z-0">
@@ -28,7 +28,7 @@ export function HeroSection() {
       {prefersReduced && <StaticBackground direction={direction} />}
 
       {/* Direction-specific layout — each is FUNDAMENTALLY different */}
-      <div className="relative z-10 min-h-screen">
+      <div className="relative z-10 min-h-[88svh]">
         {direction === "luxury" && <LuxuryHero accent={meta.accent} mounted={mounted} reduced={prefersReduced} />}
         {direction === "cyberpunk" && <CyberpunkHero accent={meta.accent} mounted={mounted} reduced={prefersReduced} />}
         {direction === "kinetic" && <KineticHero accent={meta.accent} mounted={mounted} reduced={prefersReduced} />}
@@ -363,7 +363,7 @@ function CyberpunkHero({ accent, mounted, reduced }: { accent: string; mounted: 
                     key={i}
                     className="w-2 h-6 transition-all"
                     style={{
-                      backgroundColor: `${accent}${Math.floor(20 + Math.random() * 60).toString(16)}`,
+                      backgroundColor: `${accent}${(20 + ((i * 37) % 60)).toString(16)}`,
                     }}
                   />
                 ))}
@@ -546,7 +546,10 @@ function KineticHero({ accent, mounted, reduced }: { accent: string; mounted: bo
 
 function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: boolean; reduced: boolean }) {
   return (
-    <div className="min-h-screen relative flex items-center px-6 md:px-12 overflow-hidden">
+    <div className="mp-grain relative flex min-h-[88svh] items-center overflow-hidden px-5 pb-16 pt-24 md:px-12 md:pb-20 md:pt-28">
+      {/* Single light source behind the headline */}
+      <div className="mp-glow left-[-10%] top-[10%] h-[420px] w-[420px] md:h-[620px] md:w-[620px]" aria-hidden />
+      <div className="mp-glow bottom-[-10%] right-[-5%] h-[320px] w-[320px] opacity-60 md:h-[480px] md:w-[480px]" aria-hidden />
       {/* Background decorative text — massive, rotated, behind everything */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
@@ -581,7 +584,7 @@ function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: 
           {/* Heading — massive, tilted, overlapping */}
           <div className="relative">
             <motion.h1
-              className="text-[clamp(3.5rem,12vw,10rem)] leading-[0.8] -tracking-[0.04em]"
+              className="text-[clamp(2.75rem,11.5vw,10rem)] leading-[0.8] -tracking-[0.04em]"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -596,7 +599,7 @@ function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: 
             </motion.h1>
 
             <motion.h1
-              className="text-[clamp(3.5rem,12vw,10rem)] leading-[0.8] -tracking-[0.04em] -mt-2 md:-mt-4"
+              className="text-[clamp(2.75rem,11.5vw,10rem)] leading-[0.8] -tracking-[0.04em] -mt-2 md:-mt-4"
               style={{ color: accent }}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
@@ -612,7 +615,7 @@ function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: 
             </motion.h1>
 
             <motion.h1
-              className="text-[clamp(3.5rem,12vw,10rem)] leading-[0.8] -tracking-[0.04em] -mt-2 md:-mt-4"
+              className="text-[clamp(2.75rem,11.5vw,10rem)] leading-[0.8] -tracking-[0.04em] -mt-2 md:-mt-4"
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -633,7 +636,7 @@ function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: 
                 className="absolute inset-0 -inset-x-4 -inset-y-2"
                 style={{ backgroundColor: `${accent}20` }}
               />
-              <h1 className="text-[clamp(3.5rem,12vw,10rem)] leading-[0.8] -tracking-[0.04em] relative" style={{ color: accent }}>
+              <h1 className="text-[clamp(2.75rem,11.5vw,10rem)] leading-[0.8] -tracking-[0.04em] relative" style={{ color: accent }}>
                 Awards
               </h1>
             </motion.div>
@@ -657,7 +660,7 @@ function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: 
           <div className="flex flex-col gap-3">
             <motion.a
               href="#components"
-              className="inline-flex items-center px-6 py-4 font-extrabold text-lg border-[3px] hover:translate-x-1 hover:-translate-y-1 transition-transform"
+              className="inline-flex w-full items-center px-5 py-4 text-base font-extrabold border-[3px] transition-transform hover:translate-x-1 hover:-translate-y-1 sm:px-6 sm:text-lg"
               style={{ borderColor: accent, color: accent }}
               whileHover={{ rotate: -1 }}
             >
@@ -666,7 +669,7 @@ function FreestyleHero({ accent, mounted, reduced }: { accent: string; mounted: 
             </motion.a>
             <motion.a
               href="#directions"
-              className="inline-flex items-center px-6 py-4 font-extrabold text-lg border-[3px] border-foreground/30 text-foreground/70 hover:border-foreground hover:text-foreground hover:translate-x-1 hover:-translate-y-1 transition-all"
+              className="inline-flex w-full items-center border-[3px] border-foreground/30 px-5 py-4 text-base font-extrabold text-foreground/70 transition-all hover:translate-x-1 hover:-translate-y-1 hover:border-foreground hover:text-foreground sm:px-6 sm:text-lg"
               whileHover={{ rotate: 1 }}
             >
               SEE DIRECTIONS

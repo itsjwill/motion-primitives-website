@@ -73,7 +73,7 @@ export function useSmoothMouse(smoothness: number = 0.1): MousePosition {
     x: 0,
     y: 0,
   });
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number>(undefined);
 
   useEffect(() => {
     const animate = () => {

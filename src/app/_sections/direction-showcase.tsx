@@ -8,10 +8,10 @@ import { SectionReveal } from "@/components/scroll/section-reveal";
 export function DirectionShowcase() {
   const { direction, setDirection } = useTheme();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section ref={ref} id="directions" className="py-32 lg:py-40 px-6">
+    <section ref={ref} id="directions" className="py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -20,7 +20,7 @@ export function DirectionShowcase() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium border border-border bg-surface/50 mb-6">
+          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium mp-card border border-border bg-surface/50 mb-6">
             Design System
           </span>
           <h2 className="text-heading-1 font-heading mb-4">
