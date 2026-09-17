@@ -61,7 +61,7 @@ export function CarouselSection() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium border border-border bg-surface/50 mb-6">
+          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium mp-card border border-border bg-surface/50 mb-6">
             Component Library
           </span>
           <h2 className="text-heading-1 font-heading mb-4">
@@ -122,7 +122,7 @@ function ComponentPreview({ type, accent }: { type: string; accent: string }) {
       return (
         <motion.div
           whileHover={{ rotateX: 5, rotateY: -5, scale: 1.02 }}
-          className="w-32 h-20 rounded-xl border border-border bg-surface shadow-lg"
+          className="w-32 h-20 rounded-xl mp-card border border-border bg-surface shadow-lg"
           style={{ transformStyle: "preserve-3d" }}
         >
           <div className="p-3 space-y-1.5">

@@ -20,7 +20,7 @@ export function DirectionShowcase() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium border border-border bg-surface/50 mb-6">
+          <span className="inline-block px-3 py-1 rounded-full text-caption font-medium mp-card border border-border bg-surface/50 mb-6">
             Design System
           </span>
           <h2 className="text-heading-1 font-heading mb-4">

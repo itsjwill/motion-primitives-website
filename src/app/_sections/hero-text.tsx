@@ -22,7 +22,7 @@ export function HeroText() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-caption font-medium border border-border bg-surface/50 backdrop-blur-sm">
+        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-caption font-medium mp-card border border-border bg-surface/50 backdrop-blur-sm">
           <span
             className="w-2 h-2 rounded-full animate-pulse"
             style={{ backgroundColor: meta.accent }}

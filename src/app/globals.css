@@ -743,3 +743,47 @@ body.custom-cursor button {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Ambient field — astro.build style. Flat #0a0a0a reads cheap; colour pools
+   behind the content give the page depth and a light source. Uses the active
+   direction's tokens, so it re-tints for luxury / cyberpunk / kinetic.
+--------------------------------------------------------------------------- */
+.mp-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 620px at 10% 2%, hsl(var(--primary) / 0.16), transparent 62%),
+    radial-gradient(760px 520px at 92% 16%, hsl(var(--accent) / 0.12), transparent 64%),
+    radial-gradient(1100px 760px at 50% 108%, hsl(var(--glow) / 0.12), transparent 68%);
+}
+
+/* Section eyebrow rule — the accent tick above each demo heading */
+.mp-h3 {
+  position: relative;
+  padding-top: 0.85rem;
+}
+.mp-h3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.25rem;
+  height: 3px;
+  border-radius: 999px;
+  background: hsl(var(--primary));
+}
+
+/* Unified card: hairline border, lift and accent glow on hover */
+.mp-card {
+  position: relative;
+  background: linear-gradient(180deg, hsl(var(--surface) / 0.9), hsl(var(--surface) / 0.55));
+  transition: transform 220ms var(--transition-ease), border-color 220ms ease, box-shadow 220ms ease;
+}
+.mp-card:hover {
+  transform: translateY(-3px);
+  border-color: hsl(var(--primary) / 0.45);
+  box-shadow: 0 18px 50px -20px hsl(var(--glow) / 0.45);
+}

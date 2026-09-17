@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/lib/reduced-motion";
 
 interface SectionRevealProps {
@@ -17,8 +16,6 @@ export function SectionReveal({
   className,
   delay = 0,
 }: SectionRevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReduced = usePrefersReducedMotion();
 
   if (prefersReduced) {
@@ -45,19 +42,27 @@ export function SectionReveal({
   };
 
   return (
+    // The observed element must stay unclipped. When the clip variant started
+    // at circle(0%) on the observed node itself, the browser measured an empty
+    // intersection rect, the reveal never fired, and the section stayed
+    // invisible for good. The outer node only tracks the viewport; the inner
+    // node does the animating.
     <motion.div
-      ref={ref}
       className={className}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={variants[type]}
-      transition={{
-        duration: type === "clip" ? 1.0 : 0.8,
-        ease: [0.16, 1, 0.3, 1],
-        delay,
-      }}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
     >
-      {children}
+      <motion.div
+        variants={variants[type]}
+        transition={{
+          duration: type === "clip" ? 1.0 : 0.8,
+          ease: [0.16, 1, 0.3, 1],
+          delay,
+        }}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 }
