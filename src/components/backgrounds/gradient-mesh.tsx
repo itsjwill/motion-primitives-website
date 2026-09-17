@@ -50,7 +50,7 @@ export function GradientMesh({
 }: GradientMeshProps) {
   const { direction } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animRef = useRef<number>();
+  const animRef = useRef<number>(undefined);
   const mouseRef = useRef({ x: 50, y: 50 });
   const meshPoints = points || DEFAULT_POINTS[direction] || DEFAULT_POINTS.freestyle;
 

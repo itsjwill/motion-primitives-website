@@ -1,7 +1,16 @@
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["three"],
+
+  // Turbopack config (Next.js 16 default bundler)
+  turbopack: {},
+
+  // Webpack fallback (for bundle analyzer and legacy builds)
   webpack: (config) => {
     config.externals.push({
       "utf-8-validate": "commonjs utf-8-validate",
@@ -82,4 +91,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

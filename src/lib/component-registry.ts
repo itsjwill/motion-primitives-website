@@ -27,6 +27,7 @@ export type ComponentCategory =
   | "backgrounds"
   | "cards"
   | "effects"
+  | "interactive"
   | "layout"
   | "navigation"
   | "scroll"
@@ -44,6 +45,7 @@ export const CATEGORY_META: Record<ComponentCategory, { label: string; descripti
   text: { label: "Text", description: "Text animations, gradient text, reveals, and distortion" },
   three: { label: "3D / Three.js", description: "WebGL particle systems, globes, and 3D scroll scenes" },
   transitions: { label: "Transitions", description: "Page transitions, preloaders, and noise dissolves" },
+  interactive: { label: "Interactive", description: "Modals, drawers, toasts, command palette, progress, switches, swipe cards, sortable lists, and more" },
 };
 
 // =============================================================================
@@ -1010,6 +1012,381 @@ router.configure({ mode: "ai" });\`,
   <SynapseCard id="process" title="Processing" color="purple" />
   <SynapseCard id="output" title="Output" color="emerald" />
 </div>`,
+  },
+
+  // ─── Interactive (NEW) ────────────────────────────────────────────────────────
+
+  {
+    name: "Modal",
+    slug: "modal",
+    category: "interactive",
+    description: "Spring-animated modal/dialog with 5 animation variants (spring, scale, slide, blur, morph). Includes header, footer, and close button sub-components.",
+    tags: ["modal", "dialog", "overlay", "spring", "animated", "popup"],
+    isNew: true,
+    props: [
+      { name: "open", type: "boolean", required: true, description: "Controls modal visibility" },
+      { name: "onClose", type: "() => void", required: true, description: "Called when modal should close" },
+      { name: "variant", type: '"spring" | "scale" | "slide" | "blur" | "morph"', default: '"spring"', description: "Animation style" },
+      { name: "size", type: '"sm" | "md" | "lg" | "xl" | "full"', default: '"md"', description: "Max width preset" },
+      { name: "closeOnOverlay", type: "boolean", default: "true", description: "Close when clicking overlay" },
+      { name: "closeOnEscape", type: "boolean", default: "true", description: "Close on Escape key" },
+      { name: "className", type: "string", description: "Additional CSS classes" },
+    ],
+    code: `import { Modal, ModalHeader, ModalFooter, ModalClose } from "@/components/interactive/modal";
+
+const [open, setOpen] = useState(false);
+
+<Modal open={open} onClose={() => setOpen(false)} variant="spring">
+  <ModalHeader>
+    <h2 className="text-lg font-semibold">Title</h2>
+    <ModalClose onClose={() => setOpen(false)} />
+  </ModalHeader>
+  <p>Modal content here...</p>
+  <ModalFooter>
+    <button onClick={() => setOpen(false)}>Cancel</button>
+    <button>Confirm</button>
+  </ModalFooter>
+</Modal>`,
+  },
+  {
+    name: "Toast Notifications",
+    slug: "toast",
+    category: "interactive",
+    description: "Animated toast notification system with spring physics, 5 types (default, success, error, warning, info), and 6 position options. Uses React context with useToast hook.",
+    tags: ["toast", "notification", "alert", "snackbar", "spring", "animated"],
+    isNew: true,
+    props: [
+      { name: "position", type: '"top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center"', default: '"bottom-right"', description: "Toast position on screen" },
+      { name: "maxToasts", type: "number", default: "5", description: "Maximum visible toasts" },
+    ],
+    code: `import { ToastProvider, useToast } from "@/components/interactive/toast";
+
+// Wrap your app
+<ToastProvider position="bottom-right">
+  <App />
+</ToastProvider>
+
+// In any component
+const { toast } = useToast();
+toast({ title: "Saved!", type: "success", description: "Changes saved." });`,
+  },
+  {
+    name: "Drawer",
+    slug: "drawer",
+    category: "interactive",
+    description: "Slide-out drawer/sheet from any edge with spring animations and drag-to-dismiss. Includes header with drag handle, body, and footer sub-components.",
+    tags: ["drawer", "sheet", "slide", "panel", "sidebar", "bottom-sheet", "drag"],
+    isNew: true,
+    props: [
+      { name: "open", type: "boolean", required: true, description: "Controls drawer visibility" },
+      { name: "onClose", type: "() => void", required: true, description: "Called when drawer should close" },
+      { name: "side", type: '"bottom" | "right" | "left" | "top"', default: '"bottom"', description: "Which edge the drawer slides from" },
+      { name: "dragToDismiss", type: "boolean", default: "true", description: "Enable drag-to-dismiss gesture" },
+      { name: "className", type: "string", description: "Additional CSS classes" },
+    ],
+    code: `import { Drawer, DrawerHeader, DrawerBody, DrawerFooter } from "@/components/interactive/drawer";
+
+const [open, setOpen] = useState(false);
+
+<Drawer open={open} onClose={() => setOpen(false)} side="bottom">
+  <DrawerHeader showHandle>
+    <h2 className="text-lg font-semibold">Options</h2>
+  </DrawerHeader>
+  <DrawerBody>
+    <p>Drawer content...</p>
+  </DrawerBody>
+  <DrawerFooter>
+    <button onClick={() => setOpen(false)}>Done</button>
+  </DrawerFooter>
+</Drawer>`,
+  },
+  {
+    name: "Accordion",
+    slug: "accordion",
+    category: "interactive",
+    description: "Smooth animated accordion/collapse with spring-physics height transitions. Supports single or multiple open items, controlled/uncontrolled modes.",
+    tags: ["accordion", "collapse", "expandable", "faq", "spring", "animated"],
+    isNew: true,
+    props: [
+      { name: "type", type: '"single" | "multiple"', default: '"single"', description: "Allow one or multiple items open" },
+      { name: "defaultValue", type: "string | string[]", description: "Initially open item(s)" },
+      { name: "value", type: "string | string[]", description: "Controlled open item(s)" },
+      { name: "onValueChange", type: "(value) => void", description: "Controlled onChange handler" },
+      { name: "className", type: "string", description: "Additional CSS classes" },
+    ],
+    code: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/interactive/accordion";
+
+<Accordion type="single" defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>What is Motion Primitives?</AccordionTrigger>
+    <AccordionContent>
+      The largest free animated React component library.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes — keyboard navigable, aria-expanded, reduced motion support.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>`,
+  },
+  {
+    name: "Tooltip",
+    slug: "tooltip",
+    category: "interactive",
+    description: "Spring-animated tooltip with 4 variants (spring, fade, scale, blur), 4 positions, cursor-follow mode, and configurable delay.",
+    tags: ["tooltip", "popover", "hover", "spring", "animated", "cursor"],
+    isNew: true,
+    props: [
+      { name: "content", type: "ReactNode", required: true, description: "Tooltip content" },
+      { name: "side", type: '"top" | "bottom" | "left" | "right"', default: '"top"', description: "Tooltip placement" },
+      { name: "variant", type: '"spring" | "fade" | "scale" | "blur"', default: '"spring"', description: "Animation style" },
+      { name: "delayMs", type: "number", default: "200", description: "Delay before showing (ms)" },
+      { name: "followCursor", type: "boolean", default: "false", description: "Follow cursor position" },
+      { name: "offset", type: "number", default: "8", description: "Distance from trigger (px)" },
+      { name: "className", type: "string", description: "Additional CSS classes" },
+    ],
+    code: `import { Tooltip } from "@/components/interactive/tooltip";
+
+<Tooltip content="Edit document" side="top" variant="spring">
+  <button>Edit</button>
+</Tooltip>
+
+<Tooltip content="Following you..." followCursor variant="blur">
+  <div className="h-32 w-full bg-muted rounded-lg" />
+</Tooltip>`,
+  },
+  {
+    name: "Skeleton",
+    slug: "skeleton",
+    category: "interactive",
+    description: "Loading skeleton placeholders with 4 animation variants (shimmer, pulse, wave, glow), 6 shape presets, and composable card/avatar presets.",
+    tags: ["skeleton", "loading", "placeholder", "shimmer", "pulse", "animated"],
+    isNew: true,
+    props: [
+      { name: "variant", type: '"shimmer" | "pulse" | "wave" | "glow"', default: '"shimmer"', description: "Animation style" },
+      { name: "shape", type: '"rectangle" | "circle" | "text" | "avatar" | "button" | "card"', default: '"rectangle"', description: "Shape preset" },
+      { name: "width", type: "string | number", description: "Width (CSS value)" },
+      { name: "height", type: "string | number", description: "Height (CSS value)" },
+      { name: "lines", type: "number", description: "Number of text lines to render" },
+      { name: "className", type: "string", description: "Additional CSS classes" },
+    ],
+    code: `import { Skeleton, SkeletonCard, SkeletonAvatar } from "@/components/interactive/skeleton";
+
+{/* Individual skeletons */}
+<Skeleton variant="wave" shape="text" width="60%" />
+<Skeleton variant="pulse" shape="avatar" />
+<Skeleton variant="glow" shape="card" height={200} />
+
+{/* Multi-line text */}
+<Skeleton lines={4} variant="shimmer" />
+
+{/* Preset compositions */}
+<SkeletonCard />
+<SkeletonAvatar />`,
+  },
+  {
+    name: "Command Palette",
+    slug: "command-palette",
+    category: "interactive",
+    description: "Cmd+K command palette with fuzzy search, keyboard navigation, grouped items, and shortcut display. Includes useCommandPalette hook for global binding.",
+    tags: ["command", "palette", "cmdk", "search", "keyboard", "shortcuts", "spotlight"],
+    isNew: true,
+    props: [
+      { name: "open", type: "boolean", required: true, description: "Controls palette visibility" },
+      { name: "onClose", type: "() => void", required: true, description: "Called when palette should close" },
+      { name: "items", type: "CommandItem[]", required: true, description: "Array of command items with id, label, group, icon, shortcut, onSelect" },
+      { name: "placeholder", type: "string", default: '"Type a command..."', description: "Search input placeholder" },
+      { name: "variant", type: '"spring" | "scale" | "blur"', default: '"spring"', description: "Animation style" },
+      { name: "className", type: "string", description: "Additional CSS classes" },
+    ],
+    code: `import { CommandPalette, useCommandPalette } from "@/components/interactive/command-palette";
+
+const { open, setOpen } = useCommandPalette(); // binds Cmd+K
+
+<CommandPalette
+  open={open}
+  onClose={() => setOpen(false)}
+  items={[
+    { id: "1", label: "Go to Dashboard", group: "Navigation", shortcut: "G D", onSelect: () => {} },
+    { id: "2", label: "Create New File", group: "Actions", shortcut: "⌘ N", onSelect: () => {} },
+  ]}
+/>`,
+  },
+  {
+    name: "Progress Bar",
+    slug: "progress-bar",
+    category: "interactive",
+    description: "Spring-animated progress bar with 3 animation variants (spring, smooth, bounce), optional glow and striped effects, and percentage label.",
+    tags: ["progress", "bar", "loading", "spring", "animated", "glow", "striped"],
+    isNew: true,
+    props: [
+      { name: "value", type: "number", required: true, description: "Current progress value" },
+      { name: "max", type: "number", default: "100", description: "Maximum value" },
+      { name: "variant", type: '"spring" | "smooth" | "bounce"', default: '"spring"', description: "Animation style" },
+      { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Height preset" },
+      { name: "color", type: "string", default: '"bg-primary"', description: "Bar color (Tailwind class)" },
+      { name: "showLabel", type: "boolean", default: "false", description: "Show percentage label" },
+      { name: "glow", type: "boolean", default: "false", description: "Glow effect" },
+      { name: "striped", type: "boolean", default: "false", description: "Striped animation" },
+    ],
+    code: `import { ProgressBar } from "@/components/interactive/progress";
+
+<ProgressBar value={65} variant="spring" showLabel glow />
+<ProgressBar value={40} variant="bounce" color="bg-emerald-500" striped />`,
+  },
+  {
+    name: "Step Indicator",
+    slug: "step-indicator",
+    category: "interactive",
+    description: "Animated step/wizard indicator with 3 visual variants (dots, line, pills) and spring-animated connectors between steps.",
+    tags: ["steps", "wizard", "indicator", "stepper", "progress", "spring", "animated"],
+    isNew: true,
+    props: [
+      { name: "steps", type: "string[]", required: true, description: "Array of step labels" },
+      { name: "currentStep", type: "number", required: true, description: "Active step index (0-based)" },
+      { name: "variant", type: '"dots" | "line" | "pills"', default: '"dots"', description: "Visual style" },
+      { name: "onStepClick", type: "(step: number) => void", description: "Step click handler" },
+    ],
+    code: `import { StepIndicator } from "@/components/interactive/progress";
+
+<StepIndicator
+  steps={["Account", "Profile", "Review", "Complete"]}
+  currentStep={1}
+  variant="line"
+  onStepClick={(i) => setStep(i)}
+/>`,
+  },
+  {
+    name: "Circular Progress",
+    slug: "circular-progress",
+    category: "interactive",
+    description: "SVG circular progress ring with spring-animated stroke, configurable size and stroke width, and optional center content.",
+    tags: ["circular", "progress", "ring", "svg", "spring", "animated", "donut"],
+    isNew: true,
+    props: [
+      { name: "value", type: "number", required: true, description: "Current progress value" },
+      { name: "max", type: "number", default: "100", description: "Maximum value" },
+      { name: "size", type: "number", default: "80", description: "Diameter in pixels" },
+      { name: "strokeWidth", type: "number", default: "6", description: "Stroke width" },
+      { name: "showValue", type: "boolean", default: "true", description: "Show percentage in center" },
+      { name: "color", type: "string", default: '"stroke-primary"', description: "Ring color (Tailwind class)" },
+      { name: "children", type: "ReactNode", description: "Custom center content" },
+    ],
+    code: `import { CircularProgress } from "@/components/interactive/progress";
+
+<CircularProgress value={72} size={100} strokeWidth={8} />
+<CircularProgress value={100} color="stroke-emerald-500">
+  <span className="text-xs">Done</span>
+</CircularProgress>`,
+  },
+  {
+    name: "Switch",
+    slug: "switch",
+    category: "interactive",
+    description: "Animated toggle switch with 4 visual variants (default, ios, pill, icon), 3 sizes, and spring-animated thumb. Includes ToggleGroup for segmented control.",
+    tags: ["switch", "toggle", "checkbox", "spring", "animated", "ios"],
+    isNew: true,
+    props: [
+      { name: "checked", type: "boolean", required: true, description: "Toggle state" },
+      { name: "onChange", type: "(checked: boolean) => void", required: true, description: "State change handler" },
+      { name: "variant", type: '"default" | "ios" | "pill" | "icon"', default: '"default"', description: "Visual style" },
+      { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Size preset" },
+      { name: "label", type: "string", description: "Label text" },
+      { name: "disabled", type: "boolean", default: "false", description: "Disabled state" },
+      { name: "icons", type: "{ on?: ReactNode; off?: ReactNode }", description: "Custom thumb icons" },
+    ],
+    code: `import { Switch, ToggleGroup } from "@/components/interactive/switch";
+
+const [on, setOn] = useState(false);
+<Switch checked={on} onChange={setOn} variant="ios" label="Dark mode" />
+
+const [view, setView] = useState("Grid");
+<ToggleGroup options={["Grid", "List", "Board"]} value={view} onChange={setView} />`,
+  },
+  {
+    name: "Swipe Cards",
+    slug: "swipe-cards",
+    category: "interactive",
+    description: "Tinder-style swipe card stack with drag physics, rotation, directional overlays (LIKE/NOPE), and depth-stacked cards behind the active card.",
+    tags: ["swipe", "cards", "tinder", "drag", "gesture", "stack", "animated"],
+    isNew: true,
+    props: [
+      { name: "cards", type: "SwipeCard[]", required: true, description: "Array of cards with id and content" },
+      { name: "onSwipe", type: "(card, direction) => void", description: "Called when card is swiped" },
+      { name: "onEmpty", type: "() => void", description: "Called when all cards exhausted" },
+      { name: "threshold", type: "number", default: "120", description: "Swipe threshold in pixels" },
+      { name: "rotationIntensity", type: "number", default: "15", description: "Max rotation degrees" },
+      { name: "labels", type: "{ left?: string; right?: string }", default: '{ left: "NOPE", right: "LIKE" }', description: "Overlay labels" },
+    ],
+    code: `import { SwipeCards } from "@/components/interactive/swipe-cards";
+
+<SwipeCards
+  cards={[
+    { id: "1", content: <div className="p-8">Card 1</div> },
+    { id: "2", content: <div className="p-8">Card 2</div> },
+    { id: "3", content: <div className="p-8">Card 3</div> },
+  ]}
+  onSwipe={(card, dir) => console.log(card.id, dir)}
+/>`,
+  },
+  {
+    name: "Sortable List",
+    slug: "sortable-list",
+    category: "interactive",
+    description: "Drag-and-drop reorderable list using Framer Motion's Reorder API with drag handle, removable items, and spring exit animations.",
+    tags: ["sortable", "drag", "reorder", "list", "dnd", "spring", "animated"],
+    isNew: true,
+    props: [
+      { name: "items", type: "SortableItem[]", required: true, description: "Array of items with id and content" },
+      { name: "onReorder", type: "(items) => void", required: true, description: "Called when items are reordered" },
+      { name: "axis", type: '"y" | "x"', default: '"y"', description: "Reorder axis" },
+      { name: "showHandle", type: "boolean", default: "true", description: "Show drag handle icon" },
+      { name: "removable", type: "boolean", default: "false", description: "Enable remove button" },
+      { name: "onRemove", type: "(item) => void", description: "Called when item is removed" },
+    ],
+    code: `import { SortableList } from "@/components/interactive/sortable-list";
+
+const [items, setItems] = useState([
+  { id: "1", content: <span>First item</span> },
+  { id: "2", content: <span>Second item</span> },
+  { id: "3", content: <span>Third item</span> },
+]);
+
+<SortableList items={items} onReorder={setItems} removable onRemove={(item) => {
+  setItems((prev) => prev.filter((i) => i.id !== item.id));
+}} />`,
+  },
+  {
+    name: "Animated Counter",
+    slug: "animated-counter",
+    category: "interactive",
+    description: "Spring-animated number counter with format options (number, currency, percent, compact) and animate-on-view. Includes StatCard preset with trend indicators.",
+    tags: ["counter", "number", "ticker", "spring", "animated", "stat", "dashboard"],
+    isNew: true,
+    props: [
+      { name: "value", type: "number", required: true, description: "Target number to animate to" },
+      { name: "format", type: '"number" | "currency" | "percent" | "compact"', default: '"number"', description: "Number formatting" },
+      { name: "currency", type: "string", default: '"$"', description: "Currency symbol" },
+      { name: "decimals", type: "number", default: "0", description: "Decimal places" },
+      { name: "prefix", type: "string", description: "Text before number" },
+      { name: "suffix", type: "string", description: "Text after number" },
+      { name: "animateOnView", type: "boolean", default: "true", description: "Animate when scrolled into view" },
+      { name: "springConfig", type: "{ stiffness, damping, mass? }", description: "Spring physics config" },
+    ],
+    code: `import { AnimatedCounter, StatCard } from "@/components/interactive/animated-counter";
+
+<AnimatedCounter value={12847} format="compact" />
+<AnimatedCounter value={99.7} format="percent" decimals={1} />
+<AnimatedCounter value={4250} format="currency" />
+
+<StatCard
+  value={12847}
+  label="Total Users"
+  format="compact"
+  trend={{ value: 12.5, label: "vs last month" }}
+/>`,
   },
 ];
 

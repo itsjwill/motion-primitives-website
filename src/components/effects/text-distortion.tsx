@@ -18,7 +18,7 @@ export function TextDistortion({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const mouseRef = useRef({ x: 0, y: 0 });
-  const animRef = useRef<number>();
+  const animRef = useRef<number>(undefined);
   const timeRef = useRef(0);
 
   useEffect(() => {

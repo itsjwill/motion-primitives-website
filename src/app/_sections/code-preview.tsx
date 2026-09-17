@@ -119,7 +119,7 @@ export function CodePreviewSection() {
 
 function highlightSyntax(line: string, accent: string) {
   // Simple syntax highlighting
-  const parts: JSX.Element[] = [];
+  const parts: React.ReactElement[] = [];
   let remaining = line;
   let key = 0;
 

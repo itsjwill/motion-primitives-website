@@ -23,7 +23,7 @@ export function FluidCursor({
   const positions = useRef<{ x: number; y: number }[]>(
     Array(trailCount).fill({ x: 0, y: 0 })
   );
-  const rafId = useRef<number>();
+  const rafId = useRef<number>(undefined);
 
   const cursorColor = color || (
     direction === "cyberpunk" ? "hsl(174 100% 50%)" :

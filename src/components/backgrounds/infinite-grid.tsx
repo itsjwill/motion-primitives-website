@@ -22,7 +22,7 @@ export function InfiniteGrid({
 }: InfiniteGridProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { direction } = useTheme();
-  const animRef = useRef<number>();
+  const animRef = useRef<number>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;

@@ -319,7 +319,7 @@ export function ScrollProgressAnimation({
 }: ScrollProgressAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(undefined);
 
   useEffect(() => {
     const container = containerRef.current;
